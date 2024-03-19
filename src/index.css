@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+*{
+  margin : 0;
+  padding : 0;
+  box-sizing : border-box;
+  font-family:  sans-serif;
+  user-select: none;
+}
+
+body{
+  background: #1e1e1e;
+  color : white;
+  font-family: "Open Sans";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.list{
+  margin-top: 200px;
+  width:90vw;
+  display: flex;
+  gap: 80px;
+}
+
+.todos{
+  height:70vh;
+  .title{
+    width:200px;
+    padding: 16px 0;
+    border-image: linear-gradient(90deg, #ffffff00, #ffffff, #ffffff00) ;
+    border-image-slice: 1;
+    border-image-width: 0 0 1px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.card{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  width:100%;
+  border-radius: 8px;
+  background: #2c2c2c;
+  margin-top: 8px;
+  button{
+    all:unset;
+    filter:grayscale(100%) brightness(3);
+
+  }
+}
+.input{
+  position:absolute;
+  top: 95%;
+  height:60px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width:400px;
+  border-radius: 120px;
+  background: #2c2c2c;
+  input{
+    all:unset;
+    padding:0 16px;
+  }
+  button{
+    all:unset;
+    cursor: pointer;
+    padding: 0 16px;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:40px;
+    font-size: 20px;
+    background: #3a3a3a00;
+    border-radius: 0 180px 180px 0;
+    transition: all 0.2s ease 0s;
+
+    &:hover{
+      background: #3a3a3a;
+    }
+  }
+}
