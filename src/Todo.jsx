@@ -4,7 +4,10 @@ import { Card } from "./Card";
 
 export const Todo = () => {
   const { todos, setDragTarget } = useStore();
+  const todo = useRef();
 
+
+  
   const handleOnDrop = (e) => {
     e.preventDefault();
   };
@@ -16,7 +19,7 @@ export const Todo = () => {
   };
   return (
     <>
-      <div id="todo" className="todos todo" onDrop={handleOnDrop} onDragEnter={onDragOverHandler} >
+      <div id="todo" ref={todo} className="todos todo" onDrop={handleOnDrop} onDragEnter={onDragOverHandler} >
         <div className="title"><h2>To do</h2></div>
         {todos.map((todo, index) => (
           <Card key={todo.id} text={todo.text} id={index} />

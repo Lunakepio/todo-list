@@ -4,7 +4,10 @@ export const useStore = create((set) => ({
   todos: [],
   inProgress: [],
   done: [],
+  drag: null,
+  setDrag: (drag) => set({ drag: drag }),
   dragTarget: null,
+  setDragTarget: (dragTarget) => set({dragTarget: dragTarget}),
   addTodo: (todo) => set((state) => ({ todos: [...state.todos, todo] })),
   removeTodo: (index) =>
     set((state) => ({
@@ -21,5 +24,5 @@ export const useStore = create((set) => ({
     set((state) => ({
       done: state.done.filter((_, i) => i !== index),
     })),
-  setDragTarget: (target) => set({ dragTarget: target }),
+  
 }));
