@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export const Card = ({ text, id, currentTodo }) => {
-  const {addTodo,  removeTodo, drag, setDrag, dragTarget} = useStore();
+  const {addTodo,  removeTodo, drag, setDrag, dragTarget, removeInProgress, removeDone} = useStore();
   const [currentList, setCurrentList] = useState("todo");
   const cardRef = useRef(null);
 
@@ -29,7 +29,21 @@ export const Card = ({ text, id, currentTodo }) => {
       opacity: 0,
       duration: 0.5,
       ease: "expo.out",
-      onComplete: () => removeTodo(id),
+      onComplete: () => {
+        switch (currentTodo) {
+          case "todo":
+            removeTodo(id);
+            break;
+          case "inprogress":
+            removeInProgress(id);
+            break;
+          case "done":
+            removeDone(id);
+            break;
+          default:
+            break;
+        }
+      },
     });
   };
 

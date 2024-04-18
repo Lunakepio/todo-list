@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useStore } from './store';
+import { useStore } from '../store';
 
 export const useDropHandler = () => {
   const { addDone, removeTodo, removeInProgress, removeDone, drag, dragTarget, addTodo, addInProgress } = useStore();

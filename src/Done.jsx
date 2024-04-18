@@ -1,7 +1,7 @@
 import { useEffect, useRef, useCallback } from "react";
 import { useStore } from "./store";
 import { Card } from "./Card";
-import { useDropHandler } from "./useDropHandler";
+import { useDropHandler } from "./lib/useDropHandler";
 
 export const Done = () => {
   const {
