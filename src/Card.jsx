@@ -1,9 +1,9 @@
 import { useGSAP } from "@gsap/react";
 import { useStore } from "./store";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-export const Card = ({ text, id }) => {
+export const Card = ({ text, id, currentTodo }) => {
   const {addTodo,  removeTodo, drag, setDrag, dragTarget} = useStore();
   const [currentList, setCurrentList] = useState("todo");
   const cardRef = useRef(null);
@@ -17,7 +17,8 @@ export const Card = ({ text, id }) => {
     });
   }, [])
   
-  useEffect(()=> {
+
+  useEffect(() => {
     console.log(dragTarget);
   }, [dragTarget])
 
@@ -37,15 +38,14 @@ export const Card = ({ text, id }) => {
     const cardContent= {
       text: text,
       id: id,
+      currentTodo: currentTodo,
     }
       setDrag(cardContent);
-
-  }
+  };
 
   const handleOnDragEnd = (e) => {
     e.preventDefault();
     setDrag(null);
-    
   }
 
   return (

@@ -11,6 +11,7 @@ export const TextInput = () => {
     const newTodo = {
       id : crypto.randomUUID(),
       text : input.current.value,
+      currentTodo: "todo",
     }
     addTodo(newTodo);
     input.current.value = "";

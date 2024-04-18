@@ -3,18 +3,39 @@ import { useStore } from "./store";
 import { Card } from "./Card";
 
 export const InProgress = () => {
-  const { inProgress, addInProgress, drag, dragTarget, setDragTarget } = useStore();
+  const {
+    inProgress,
+    addInProgress,
+    removeInProgress,
+    removeDone,
+    drag,
+    dragTarget,
+    setDragTarget,
+    removeTodo,
+  } = useStore();
 
   const onDragOverHandler = (e) => {
     e.preventDefault();
     setDragTarget("inprogress");
-    console.log("inprogress", drag)
-  }
+  };
 
   const onDropHandler = (e) => {
     e.preventDefault();
-    addInProgress(drag)
-  }
+    addInProgress(drag);
+    switch (drag.currentTodo) {
+      case "todo":
+        removeTodo(drag.id);
+        break;
+      case "inprogress":
+        removeInProgress(drag.id);
+        break;
+      case "done":
+        removeDone(drag.id);
+        break;
+      default:
+        break;
+    }
+  };
   return (
     <>
       <div
@@ -27,7 +48,12 @@ export const InProgress = () => {
           <h2>In Progress</h2>
         </div>
         {inProgress.map((todo, index) => (
-          <Card key={todo.id} text={todo.text} id={index} />
+          <Card
+            key={todo.id}
+            text={todo.text}
+            id={index}
+            currentTodo={"inprogress"}
+          />
         ))}
       </div>
     </>
