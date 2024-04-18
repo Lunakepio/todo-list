@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useStore } from "./store";
 import { Card } from "./Card";
+import { useDropHandler } from "./useDropHandler";
 
 export const Todo = () => {
   const {
@@ -19,23 +20,7 @@ export const Todo = () => {
     setDragTarget("todo");
   };
   
-  const handleOnDrop = (e) => {
-    e.preventDefault();
-    addTodo(drag);
-    switch (drag.currentTodo) {
-      case "todo":
-        removeTodo(drag.id);
-        break;
-      case "inprogress":
-        removeInProgress(drag.id);
-        break;
-      case "done":
-        removeDone(drag.id);
-        break;
-      default:
-        break;
-    }
-  };
+  const onDropHandler = useDropHandler();
 
   return (
     <>
@@ -43,7 +28,7 @@ export const Todo = () => {
         id="todo"
         ref={todo}
         className="todos todo"
-        onDrop={handleOnDrop}
+        onDrop={onDropHandler}
         onDragOver={onDragOverHandler}
       >
         <div className="title">

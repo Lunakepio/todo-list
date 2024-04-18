@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useStore } from "./store";
 import { Card } from "./Card";
+import { useDropHandler } from "./useDropHandler";
 
 export const InProgress = () => {
   const {
@@ -19,23 +20,7 @@ export const InProgress = () => {
     setDragTarget("inprogress");
   };
 
-  const onDropHandler = (e) => {
-    e.preventDefault();
-    addInProgress(drag);
-    switch (drag.currentTodo) {
-      case "todo":
-        removeTodo(drag.id);
-        break;
-      case "inprogress":
-        removeInProgress(drag.id);
-        break;
-      case "done":
-        removeDone(drag.id);
-        break;
-      default:
-        break;
-    }
-  };
+ const onDropHandler = useDropHandler();
   return (
     <>
       <div

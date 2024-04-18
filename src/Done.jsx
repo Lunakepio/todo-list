@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { useStore } from "./store";
 import { Card } from "./Card";
+import { useDropHandler } from "./useDropHandler";
 
 export const Done = () => {
   const {
@@ -13,29 +14,13 @@ export const Done = () => {
     removeInProgress,
   } = useStore();
   const todo = useRef();
-
-  const onDragOverHandler = (e) => {
+  
+  const onDragOverHandler = useCallback((e) => {
     e.preventDefault();
     setDragTarget("done");
-  };
-
-  const onDropHandler = (e) => {
-    e.preventDefault();
-    addDone(drag);
-    switch (drag.currentTodo) {
-      case "todo":
-        removeTodo(drag.id);
-        break;
-      case "inprogress":
-        removeInProgress(drag.id);
-        break;
-      case "done":
-        removeDone(drag.id);
-        break;
-      default:
-        break;
-    }
-  };
+  }, [setDragTarget]);  
+  
+  const onDropHandler = useDropHandler();
   return (
     <>
       <div id="done" className="todos done" onDragOver={onDragOverHandler} onDrop={onDropHandler}>
